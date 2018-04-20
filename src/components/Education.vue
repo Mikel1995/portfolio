@@ -9,13 +9,13 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <div class="exp-holder margTop">
-                                <div class="exp">
+                                <div v-for="education in educations" class="exp">
                                     <div class="hgroup">
-                                        <h4>Bachelor Degree – Mutation Media </h4>
-                                        <h6><i class="fas fa-calendar-plus"></i>Mar 2015 - May 2015</h6>
+                                        <h4>{{education.graduation}}</h4>
+                                        <h6><i class="fas fa-calendar-plus"></i>{{education.period}}</h6>
                                     </div>
-                                    <p>Ut enim ad minim veniam, quis nostrud exerc. Irure dolor in reprehend incididunt labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                                        inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                    <p>
+                                        {{education.school}}
                                     </p>
                                 </div>
                             </div>
@@ -28,7 +28,29 @@
 </template>
 
 <script>
+    import helper from '../services/getData'
     export default {
+        mixins: [helper],
+        data() {
+            return {
+                educations: []
+            }
+        },
+        created() {
+            this.getInfo()
+        },
+        methods: {
+            getInfo() {
+                this.getEducation(
+                    success => {
+                        this.educations = success.body;
+                        console.log('this.educations: ', this.educations);
+                    },
+                    error => {
+                        console.log('error: ', error);
+                    })
+            }
+        }
     }
 </script>
 

@@ -9,13 +9,12 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <div class="exp-holder margTop">
-                                <div class="exp">
+                                <div v-for="work in works" class="exp">
                                     <div class="hgroup">
-                                        <h4>WebDesigner – Mutation Media </h4>
-                                        <h6><i class="fa fa-calendar-plus"></i>Feb 2015 - <span class="current">Current</span></h6>
+                                        <h4>{{work.position}} - {{work.institution}}</h4>
+                                        <h6><i class="fa fa-calendar-plus"></i>{{work.period}}</h6>
                                     </div>
-                                    <p>Ut enim ad minim veniam, quis nostrud exerc. Irure dolor in reprehend incididunt labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                                        inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                    <p>{{work.description}}
                                     </p>
                                 </div>
                             </div>
@@ -28,7 +27,30 @@
 </template>
 
 <script>
-    export default {}
+      import helper from '../services/getData'
+    export default {
+        mixins: [helper],
+        data() {
+            return {
+                works: []
+            }
+        },
+        created() {
+            this.getInfo()
+        },
+        methods: {
+            getInfo() {
+                this.getWorkexperience(
+                    success => {
+                        this.works = success.body;
+                        console.log('this.works: ', this.works);
+                    },
+                    error => {
+                        console.log('error: ', error);
+                    })
+            }
+        }
+    }
 </script>
 
 <style scoped>

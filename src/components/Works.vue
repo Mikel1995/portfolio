@@ -37,7 +37,30 @@
 </template>
 
 <script>
-    export default {}
+    import helper from '../services/getData'
+    export default {
+        mixins: [helper],
+        data() {
+            return {
+                works: []
+            }
+        },
+        created() {
+            this.getInfo()
+        },
+        methods: {
+            getInfo() {
+                this.getWorkexperience(
+                    success => {
+                        this.works = success.body;
+                        console.log('this.works: ', this.works);
+                    },
+                    error => {
+                        console.log('error: ', error);
+                    })
+            }
+        }
+    }
 </script>
 
 <style scoped>

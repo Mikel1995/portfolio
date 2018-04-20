@@ -2,7 +2,7 @@
     <header id="header">
         <div class="main-header">
             <figure class="img-profile">
-                <img src="img/profile.jpg" alt="" />
+                <img :src="profilePath" alt="" />
                 <figcaption class="name-profile">
                     <span>Carlose smith <sup>&reg;</sup></span>
                 </figcaption>
@@ -23,13 +23,18 @@
                 <li><a href="#"><i class="fas fa-at"></i></a></li>
                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
             </ul>
-            <p>&copy; 2015 Mutationthemes.</p>
+            <p>&copy; 2018 Mikel Kasneci</p>
         </div>
     </header>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                  profilePath: '../../static/images/profile.jpg',
+            }
+        }
     }
 </script>
 

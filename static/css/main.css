@@ -581,11 +581,11 @@
 
 
 .timeline.experience:after{
-	content: '\2713';
+	content: '\1F4BC';
 }
 
 .timeline.education:after{
-	content: '\e80c';
+	content: '\1F393';
 }
 
 

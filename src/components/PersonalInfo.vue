@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="main-title">
-      <h1>who am i</h1>
-    </div>
+      <div class="main-title">
+        <h1>who am i</h1>
+      </div>
     <div class="content">
       <div class="block-content margBSmall">
         <div class=" profile margBSmall">
@@ -50,8 +50,7 @@
     mixins: [helper],
     data() {
       return {
-        profilePath: '../../static/images/profile.jpg',
-        personalInfo: []
+        personalInfo: [],
       }
     },
     created() {

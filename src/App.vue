@@ -1,5 +1,7 @@
 <template>
-  <div class="row" id="app">
+<div>
+    <ring-loader :loading="isLoading" :style="{'margin-left': '50%', 'margin-top': '20%'}" :color="'#5dc596'" :size="'200px'"></ring-loader>
+    <div  v-if="!isLoading" class="row" id="app">
     <div class="col-xs-3 col-sm- col-md-3 col-lg-3">
       <app-menu></app-menu>
       <app-languages-and-interes></app-languages-and-interes>
@@ -15,6 +17,7 @@
     <app-works></app-works>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -25,6 +28,9 @@ import Menu from './components/Menu'
 import Experience from './components/Experience'
 import Education from './components/Education'
 import Works from './components/Works'
+  import {
+    RingLoader
+  } from 'vue-spinner/dist/vue-spinner.min.js'
 export default {
   name: 'app',
   components: {
@@ -34,12 +40,18 @@ export default {
     appMenu: Menu,
     appExperience: Experience,
     appEducation: Education,
-    appWorks: Works
+    appWorks: Works,
+    RingLoader
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      isLoading: true
     }
+  },
+  created(){
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 }
 </script>

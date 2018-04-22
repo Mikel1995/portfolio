@@ -1,12 +1,8 @@
 <template>
-    <header id="header">
-        <div class="main-header">
-            <figure class="img-profile">
-                <img :src="profilePath" alt="" />
-                <figcaption class="name-profile">
-                    <span>Carlose smith <sup>&reg;</sup></span>
-                </figcaption>
-            </figure>
+<div>
+        <div class="main-header" >
+
+              <img :src="personalInfo.PathImg" class="img-circle" alt="Cinque Terre" width="304" height="236"> 
             <nav id="main-nav" class="main-nav clearfix tabbed">
                 <ul>
                     <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
@@ -26,20 +22,49 @@
             <p>&copy; 2018 Mikel Kasneci</p>
         </div>
     </header>
+</div>
+    
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                  profilePath: '../../static/images/profile.jpg',
-            }
-        }
+    import helper from '../services/getData'
+  export default {
+    name: 'Menu',
+    mixins: [helper],
+    data() {
+      return {
+        personalInfo: [],
+      }
+    },
+    created() {
+      this.getInfo();
+    },
+    methods: {
+      getInfo() {
+        this.getPersonalInfo(
+          success => {
+            this.personalInfo = success.body;
+            console.log('this.personalInfo: ', this.personalInfo);
+          },
+          error => {
+            console.log('error: ', error);
+          }
+        );
+      }
     }
+  }
 </script>
 
-<style>
+<style scoped>
 
+#header{
+    margin-left: 20px;
+    width: 80%;
+    
+}
+/* .main-header nav{
+    width: 80%;
+} */
 </style>
 
 

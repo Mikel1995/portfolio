@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container">
-            <div v-for="skill in skills" v-bind="skill.name">
+            <div v-for="skill in skills">
              {{skill.name}}
             <div class="progress">
                

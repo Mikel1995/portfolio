@@ -15,7 +15,7 @@ var helper = {
         getLanguages(success, error){
             this.$http.get('Languages.json').then(success, error);
         },
-        getMuzic(success, error){
+        getMusic(success, error){
             this.$http.get('Muzic.json').then(success, error);
         }
     }

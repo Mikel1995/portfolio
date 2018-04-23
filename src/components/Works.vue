@@ -1,9 +1,10 @@
 <template>
     <div>
-        <div class="main-title">
+        <grid-loader :loading="isLoading" :color="'#007bff'" :style="{'margin-left': '50%', 'margin-top': '20%'}"></grid-loader>
+        <div v-if="!isLoading" class="main-title">
             <h1>my works</h1>
         </div>
-        <div class="content">
+        <div v-if="!isLoading" class="content">
             <div class="block-content ">
                 <div class="works">
                     <div class="row">
@@ -15,11 +16,11 @@
                                             <h3 class="proj-desc">
                                                 Project Name
                                                 <span class="zigzag work clearfix " data-svg-drawing="yes">
-                                                                              <svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="25" height="10" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                                                 <path d="M1.357,12.26 10.807,2.81 20.328,12.332
-                                                                                    29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 "  style="stroke-dasharray: 93.9851, 93.9851; stroke-dashoffset: 0;"/>
-                                                                              </svg>
-                                                                           </span>
+                                                                                  <svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="25" height="10" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                                                     <path d="M1.357,12.26 10.807,2.81 20.328,12.332
+                                                                                        29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 "  style="stroke-dasharray: 93.9851, 93.9851; stroke-dashoffset: 0;"/>
+                                                                                  </svg>
+                                                                               </span>
                                                 <span>web design</span>
                                             </h3>
                                         </div>
@@ -38,11 +39,18 @@
 
 <script>
     import helper from '../services/getData'
+    import {
+        GridLoader
+    } from 'vue-spinner/dist/vue-spinner.min.js'
     export default {
         mixins: [helper],
+        components: {
+            GridLoader
+        },
         data() {
             return {
-                works: []
+                works: [],
+                isLoading: true
             }
         },
         created() {
@@ -53,9 +61,10 @@
                 this.getWorkexperience(
                     success => {
                         this.works = success.body;
-                        console.log('this.works: ', this.works);
+                        this.isLoading = false
                     },
                     error => {
+                        this.isLoading = false
                         console.log('error: ', error);
                     })
             }

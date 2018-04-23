@@ -1,11 +1,10 @@
 <template>
     <div>
-        <grid-loader :loading="isLoading" :color="'#007bff'" :style="{'margin-left': '50%', 'margin-top': '20%'}"></grid-loader>
         
-        <div v-if="!isLoading" class="main-title">
+        <div class="main-title">
             <h1>education</h1>
         </div>
-        <div v-if="!isLoading" class="content">
+        <div class="content">
             <div class="block-content">
                 <div class="timeline education">
                     <div class="row ">
@@ -30,37 +29,7 @@
 </template>
 
 <script>
-    import helper from '../services/getData'
-        import {
-        GridLoader
-    } from 'vue-spinner/dist/vue-spinner.min.js'
     export default {
-        mixins: [helper],
-        components: {
-            GridLoader
-        },
-        data() {
-            return {
-                educations: [],
-                isLoading: true
-            }
-        },
-        created() {
-            this.getInfo()
-        },
-        methods: {
-            getInfo() {
-                this.getEducation(
-                    success => {
-                        this.educations = success.body;
-                        this.isLoading = false
-                    },
-                    error => {
-                        this.isLoading = false
-                        console.log('error: ', error);
-                    })
-            }
-        }
     }
 </script>
 

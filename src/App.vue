@@ -6,7 +6,8 @@
       </div>
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
         <transition name="slide-fade" mode="out-in">
-          <component :is="componentId"></component>
+          <component :is="componentId" :work="works" :education="educations" :skill="skills" :music="musics" :language="languages" 
+         :perlInfo="personalInfo" ></component>
         </transition>
       </div>
     </div>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+  import helper from './services/getData.js'
   import Personalinfo from './components/PersonalInfo.vue'
   import Skills from './components/Skills'
   import LanguagesAndInteres from './components/LanguagesAndInteres'
@@ -26,6 +28,7 @@
   } from 'vue-spinner/dist/vue-spinner.min.js'
   export default {
     name: 'app',
+    mixins: [helper],
     components: {
       appPersonalinfo: Personalinfo,
       appSkills: Skills,
@@ -39,16 +42,90 @@
     data() {
       return {
         isLoading: true,
+                works: [],
+                educations: [],
+                skills: [],
+                works: [],
+                musics: [],
+                languages: [],
+                personalInfo: []
       }
     },
     created() {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
+      this.getInfo();
     },
     computed: {
       componentId() {
         return this.$store.state.componentId;
+      }
+    },
+    methods: {
+      getInfo() {
+        this.getPersonalInfo(
+          success => {
+            this.personalInfo = success.body;
+            this.getLang()
+          },
+          error => {
+            this.getLang()
+            console.log('error: ', error);
+          }
+        );
+      },
+      getLang() {
+        this.getLanguages(
+          success => {
+            this.getMus();
+            this.languages = success.body;
+          },
+          error => {
+            this.getMus();
+            console.log('error: ', error);
+          })
+      },
+      getMus() {
+        this.getMusic(
+          success => {
+            this.getSkill()
+            this.musics = success.body;
+          },
+          error => {
+            this.getSkill()
+            console.log('error: ', error);
+          })
+      },
+      getSkill() {
+        this.getSkills(
+          success => {
+            this.getExp();
+            this.skills = success.body;
+          },
+          error => {
+            this.getExp();
+            console.log('error: ', error);
+          })
+      },
+      getExp() {
+        this.getWorkexperience(
+          success => {
+            this.getEduc();
+            this.works = success.body;
+          },
+          error => {
+            this.getEduc();
+            console.log('error: ', error);
+          })
+      },
+      getEduc() {
+        this.getEducation(
+          success => {
+            this.educations = success.body;
+            this.isLoading = false
+          },
+          error => {
+            this.isLoading = false
+            console.log('error: ', error);
+          })
       }
     }
   }
@@ -58,7 +135,6 @@
   html {
     overflow-x: hidden;
   }
-
   .v-ring1 {
     height: 100% !important;
     width: 100% !important;
@@ -69,7 +145,6 @@
     /* top: 30% !important; */
     left: 45% !important;
   }
-  
   /* Enter and leave animations can use different */
   /* durations and timing functions.              */
   .slide-fade-enter-active {

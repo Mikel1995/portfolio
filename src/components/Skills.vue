@@ -1,12 +1,11 @@
 <template>
     <div>
-        <grid-loader :loading="isLoading" :color="'#007bff'" :style="{'margin-left': '50%', 'margin-top': '20%'}"></grid-loader>
-        <div v-if="!isLoading" class="main-title">
+        <div  class="main-title">
             <h1>professional skills</h1>
             <div class="divider">
             </div>
         </div>
-        <div v-if="!isLoading" class="container">
+        <div class="container">
             <div v-for="skill in skills">
                 {{skill.name}}
                 <div class="progress">
@@ -20,38 +19,8 @@
 </template>
 
 <script>
-    import helper from '../services/getData'
-    import {
-        GridLoader
-    } from 'vue-spinner/dist/vue-spinner.min.js'
     export default {
-        name: 'Skills',
-        mixins: [helper],
-        components: {
-            GridLoader
-        },
-        data() {
-            return {
-                skills: [],
-                isLoading: true
-            }
-        },
-        mounted() {
-            this.getInfo()
-        },
-        methods: {
-            getInfo() {
-                this.getSkills(
-                    success => {
-                        this.skills = success.body;
-                        this.isLoading = false
-                    },
-                    error => {
-                        this.isLoading = false
-                        console.log('error: ', error);
-                    })
-            }
-        }
+        name: 'Skills'
     }
 </script>
 

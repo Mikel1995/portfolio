@@ -11,40 +11,23 @@
       </div>
     <div class="bottom-header bgWhite ofsTSmall ofsBSmall tCenter">
       <ul class="social">
-        <li><a :href="personalInfo.Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+        <!-- <li><a :href="personalInfo.Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
         <li><a :href="personalInfo.MailTo"><i class="fas fa-at"></i></a></li>
-        <li><a :href="personalInfo.Facebook"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a :href="personalInfo.Facebook"><i class="fab fa-facebook-f"></i></a></li> -->
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-  import helper from '../services/getData'
   export default {
     name: 'Menu',
-    mixins: [helper],
     data() {
       return {
-        personalInfo: [],
         isActive: 0
       }
     },
-    created() {
-      this.getInfo();
-    },
     methods: {
-      getInfo() {
-        this.getPersonalInfo(
-          success => {
-            this.personalInfo = success.body;
-            console.log('this.personalInfo: ', this.personalInfo);
-          },
-          error => {
-            console.log('error: ', error);
-          }
-        );
-      },
       changeComponent(id) {
         switch (id) {
           case 0:

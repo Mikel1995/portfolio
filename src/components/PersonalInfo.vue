@@ -66,7 +66,7 @@
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="main-title">
-          <h1>Favorite Coding Music {{test}}</h1>
+          <h1>Favorite Coding Music</h1>
         </div>
         <div class="container">
              <div v-for="mus in music">
@@ -84,7 +84,7 @@
     name: 'Personalinfo',
     props: {
       perlInfo: {
-        type: Array
+        type: Object
       },
       language: {
         type: Array

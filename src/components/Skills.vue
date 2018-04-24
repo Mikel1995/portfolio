@@ -6,10 +6,10 @@
             </div>
         </div>
         <div class="container">
-            <div v-for="skill in skills">
-                {{skill.name}}
+            <div v-for="s in skill">
+                {{s.name}}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" :style="{ width: skill.nivel+'%'}">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" :style="{ width: s.nivel+'%'}">
                         <span class="sr-only">40% Complete (success)</span>
                     </div>
                 </div>
@@ -20,7 +20,12 @@
 
 <script>
     export default {
-        name: 'Skills'
+        name: 'Skills',
+        props: {
+            skill: {
+                type: Array
+            }
+        }
     }
 </script>
 

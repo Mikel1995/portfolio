@@ -9,12 +9,12 @@
                     <div class="row ">
                         <div class="col-md-12">
                             <div class="exp-holder margTop">
-                                <div v-for="work in works" class="exp">
+                                <div v-for="w in work" class="exp">
                                     <div class="hgroup">
-                                        <h4>{{work.position}} - {{work.institution}}</h4>
-                                        <h6><i class="fa fa-calendar-plus"></i>{{work.period}}</h6>
+                                        <h4>{{w.position}} - {{w.institution}}</h4>
+                                        <h6><i class="fa fa-calendar-plus"></i>{{w.period}}</h6>
                                     </div>
-                                    <p>{{work.description}}
+                                    <p>{{w.description}}
                                     </p>
                                 </div>
                             </div>
@@ -28,6 +28,11 @@
 
 <script>
     export default {
+         props: {
+            work: {
+                type: Array
+            }
+        }
     }
 </script>
 

@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div v-if="!isLoading" class="row" id="app">
+    <div class="row" id="app">
       <div class="col-xs-3 col-sm- col-md-3 col-lg-3">
-        <app-menu></app-menu>
+        <app-menu :perlInfo="personalInfo" ></app-menu>
       </div>
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+        <grid-loader :loading="isLoading" :color="'#007bff'" :size="'30px'" :style="{'margin-top': '25%', 'margin-left': '45%'}"></grid-loader>
         <transition name="slide-fade" mode="out-in">
-          <component :is="componentId" :work="works" :education="educations" :skill="skills" :music="musics" :language="languages" 
+          <component v-if="!isLoading" :is="componentId" :work="works" :education="educations" :skill="skills" :music="musics" :language="languages" 
          :perlInfo="personalInfo" ></component>
         </transition>
       </div>
@@ -18,13 +19,12 @@
   import helper from './services/getData.js'
   import Personalinfo from './components/PersonalInfo.vue'
   import Skills from './components/Skills'
-  import LanguagesAndInteres from './components/LanguagesAndInteres'
   import Menu from './components/Menu'
   import Experience from './components/Experience'
   import Education from './components/Education'
   import Works from './components/Works'
   import {
-    RingLoader
+    GridLoader
   } from 'vue-spinner/dist/vue-spinner.min.js'
   export default {
     name: 'app',
@@ -32,12 +32,11 @@
     components: {
       appPersonalinfo: Personalinfo,
       appSkills: Skills,
-      appLanguagesAndInteres: LanguagesAndInteres,
       appMenu: Menu,
       appExperience: Experience,
       appEducation: Education,
       appWorks: Works,
-      RingLoader
+      GridLoader
     },
     data() {
       return {

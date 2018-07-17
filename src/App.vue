@@ -6,10 +6,12 @@
       </div>
       <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
         <grid-loader :loading="isLoading" :color="'#007bff'" :size="'30px'" :style="{'margin-top': '25%', 'margin-left': '45%'}"></grid-loader>
-        <transition name="slide-fade" mode="out-in">
+        <!-- <transition name="slide-fade" mode="out-in">
           <component v-if="!isLoading" :is="componentId" :work="works" :education="educations" :skill="skills" :music="musics" :language="languages" 
          :perlInfo="personalInfo" ></component>
-        </transition>
+        </transition> -->
+         <router-view v-if="!isLoading" :work="works" :education="educations" :skill="skills" :music="musics" :language="languages" 
+         :perlInfo="personalInfo"></router-view>
       </div>
     </div>
   </div>
@@ -23,6 +25,7 @@
   import Experience from './components/Experience'
   import Education from './components/Education'
   import Works from './components/Works'
+  import SingleProject from './components/SingleProject.vue'
   import {
     GridLoader
   } from 'vue-spinner/dist/vue-spinner.min.js'

@@ -80,22 +80,35 @@
 </template>
 
 <script>
-  export default {
-    name: 'Personalinfo',
-    props: {
-      perlInfo: {
-        type: Object
-      },
-      language: {
-        type: Array
-      },
-      music: {
-        type: Array
-      }
-      }
+export default {
+  name: "Personalinfo",
+  props: {
+    perlInfo: {
+      type: Object
+    },
+    language: {
+      type: Array
+    },
+    music: {
+      type: Array
+    }
   }
+};
+
+function tranformQueryData(item) {
+  var label = "";
+  var i = 0;
+
+  for (var key in item) {
+    if (i > 0) {
+      label += item[key] + " ";
+    }
+    i++;
+  }
+
+  return label;
+}
 </script>
 
 <style scoped>
-
 </style>
